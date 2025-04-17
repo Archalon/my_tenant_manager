@@ -5,11 +5,13 @@ namespace App\Service;
 use App\Dto\UserCreateDto;
 use App\Entity\User;
 use App\Repository\UserRepository;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserService
 {
     public function __construct(
-        private UserRepository $userRepository
+        private UserRepository $userRepository,
+        private UserPasswordHasherInterface $passwordHasher
     ) {}
 
     public function save(User $user): void
@@ -43,7 +45,12 @@ class UserService
         $user->setEmail($dto->email);
         $user->setRoles(['ROLE_API']);
         $user->setIsActive(true);
-        $user->setPassword($dto->password);
+        $hashedPassword = $this->passwordHasher->hashPassword(
+            $user,
+            $dto->password
+        );
+        $user->setPassword($hashedPassword);
+
         $user->setCreatedAt(new \DateTimeImmutable());
 
         $this->save($user);
