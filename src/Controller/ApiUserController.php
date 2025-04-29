@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Dto\UserCreateDto;
 use App\Service\UserService;
+use App\Event\AuditLogEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,13 +12,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 #[Route('/api/users')]
 class ApiUserController extends AbstractController
 {
     public function __construct(
-        private UserService $userService
+        private UserService $userService,
+        private EventDispatcherInterface $eventDispatcher,
     ) {}
 
     #[Route('', name: 'api_users_index', methods: ['GET'])]
@@ -47,6 +49,15 @@ class ApiUserController extends AbstractController
 
         $user = $this->userService->createUserFromDto($createDto);
 
+        $this->eventDispatcher->dispatch(new AuditLogEvent(
+            $user,
+            "Created user: {$user->getEmail()}",
+            'User',
+            $user->getId(),
+            'create',
+            []
+        ));
+
         return $this->json($user, Response::HTTP_CREATED, [], ['groups' => 'user:read']);
     }
 
@@ -61,6 +72,15 @@ class ApiUserController extends AbstractController
         $data = json_decode($request->getContent(), true);
         $user = $this->userService->updateUser($user, $data);
 
+        $this->eventDispatcher->dispatch(new AuditLogEvent(
+            $user,
+            "Updated user: {$user->getEmail()}",
+            'User',
+            $user->getId(),
+            'update',
+            ['changes' => $data]
+        ));
+
         return $this->json($user, Response::HTTP_OK, [], ['groups' => 'user:read']);
     }
 
@@ -73,6 +93,16 @@ class ApiUserController extends AbstractController
         }
 
         $this->userService->delete($user);
+
+        $this->eventDispatcher->dispatch(new AuditLogEvent(
+            $user,
+            "Deleted user: {$user->getEmail()}",
+            'User',
+            $user->getId(),
+            'delete',
+            []
+        ));
+
         return $this->json(null, Response::HTTP_NO_CONTENT);
     }
 }
