@@ -18,7 +18,7 @@ class Audit
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'audits')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     #[Groups(['audit:read'])]
     private ?User $user = null;
 
