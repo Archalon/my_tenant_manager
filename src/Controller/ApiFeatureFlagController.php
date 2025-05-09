@@ -54,16 +54,6 @@ class ApiFeatureFlagController extends AbstractController
 
         $featureFlag = $this->featureFlagService->createFeatureFlagFromDto($createDto, $user);
 
-        // Disparar evento de auditoria para criação de feature flag
-        $this->eventDispatcher->dispatch(new AuditLogEvent(
-            $user,
-            "Created feature flag: {$featureFlag->getName()}",
-            'FeatureFlag',
-            $featureFlag->getName(),
-            'create',
-            []
-        ));
-
         return $this->json($featureFlag, Response::HTTP_CREATED, [], ['groups' => 'feature_flag:read']);
     }
 
@@ -78,16 +68,6 @@ class ApiFeatureFlagController extends AbstractController
         $data = json_decode($request->getContent(), true);
         $featureFlag = $this->featureFlagService->updateFeatureFlag($featureFlag, $data);
 
-        // Disparar evento de auditoria para atualização de feature flag
-        $this->eventDispatcher->dispatch(new AuditLogEvent(
-            $this->getUser(),
-            "Updated feature flag: {$featureFlag->getName()}",
-            'FeatureFlag',
-            $featureFlag->getName(),
-            'update',
-            ['changes' => $data]
-        ));
-
         return $this->json($featureFlag, Response::HTTP_OK, [], ['groups' => 'feature_flag:read']);
     }
 
@@ -99,17 +79,7 @@ class ApiFeatureFlagController extends AbstractController
             return $this->json(['error' => 'FeatureFlag not found'], Response::HTTP_NOT_FOUND);
         }
 
-        $this->featureFlagService->delete($featureFlag);
-
-        // Disparar evento de auditoria para deleção de feature flag
-        $this->eventDispatcher->dispatch(new AuditLogEvent(
-            $this->getUser(),
-            "Deleted feature flag: {$featureFlag->getName()}",
-            'FeatureFlag',
-            $featureFlag->getName(),
-            'delete',
-            []
-        ));
+        $this->featureFlagService->deleteFeatureFlag($featureFlag);
 
         return $this->json(null, Response::HTTP_NO_CONTENT);
     }

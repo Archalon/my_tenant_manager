@@ -6,11 +6,17 @@ use App\Dto\TenantCreateDto;
 use App\Entity\Tenant;
 use App\Repository\TenantRepository;
 use App\Entity\User;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use App\Event\CreateTenantEvent;
+use App\Event\UpdateTenantEvent;
+use App\Event\DeleteTenantEvent;
+
 
 class TenantService
 {
     public function __construct(
-        private TenantRepository $tenantRepository
+        private TenantRepository $tenantRepository,
+        private EventDispatcherInterface $eventDispatcher
     ) {}
 
     public function save(Tenant $tenant): void
@@ -18,9 +24,12 @@ class TenantService
         $this->tenantRepository->save($tenant);
     }
 
-    public function delete(Tenant $tenant): void
+    public function deleteTenant(Tenant $tenant): void
     {
-        $this->tenantRepository->delete($tenant);
+        $tenant->setDeletedAt(new \DateTimeImmutable());
+        $this->save($tenant);
+
+        $this->eventDispatcher->dispatch(new DeleteTenantEvent($tenant));
     }
 
     public function getAllTenants(): array
@@ -49,6 +58,16 @@ class TenantService
 
         $this->save($tenant);
 
+        $changes = [
+            'name' => $tenant->getName(),
+            'code' => $tenant->getCode(),
+            'status' => $tenant->getStatus(),
+            'isActive' => $tenant->isActive(),
+            'createdAt' => $tenant->getCreatedAt(),
+        ];
+
+        $this->eventDispatcher->dispatch(new CreateTenantEvent($tenant, $changes));
+
         return $tenant;
     }
 
@@ -60,6 +79,8 @@ class TenantService
         $tenant->setUpdatedAt(new \DateTimeImmutable());
 
         $this->save($tenant);
+
+        $this->eventDispatcher->dispatch(new UpdateTenantEvent($tenant, $data));
 
         return $tenant;
     }

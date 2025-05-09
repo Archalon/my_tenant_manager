@@ -54,16 +54,6 @@ class ApiTenantController extends AbstractController
 
         $tenant = $this->tenantService->createTenantFromDto($createDto, $user);
 
-        // Disparar evento de auditoria
-        $this->eventDispatcher->dispatch(new AuditLogEvent(
-            $user,
-            "Created tenant: {$tenant->getName()}",
-            'Tenant',
-            $tenant->getCode(),
-            'create',
-            []
-        ));
-
         return $this->json($tenant, Response::HTTP_CREATED, [], ['groups' => 'tenant:read']);
     }
 
@@ -78,16 +68,6 @@ class ApiTenantController extends AbstractController
         $data = json_decode($request->getContent(), true);
         $tenant = $this->tenantService->updateTenant($tenant, $data);
 
-        // Disparar evento de auditoria
-        $this->eventDispatcher->dispatch(new AuditLogEvent(
-            $this->getUser(),
-            "Updated tenant: {$tenant->getName()}",
-            'Tenant',
-            $tenant->getCode(),
-            'update',
-            ['changes' => $data]
-        ));
-
         return $this->json($tenant, Response::HTTP_OK, [], ['groups' => 'tenant:read']);
     }
 
@@ -99,17 +79,7 @@ class ApiTenantController extends AbstractController
             return $this->json(['error' => 'Tenant not found'], Response::HTTP_NOT_FOUND);
         }
 
-        $this->tenantService->delete($tenant);
-
-        // Disparar evento de auditoria
-        $this->eventDispatcher->dispatch(new AuditLogEvent(
-            $this->getUser(),
-            "Deleted tenant: {$tenant->getName()}",
-            'Tenant',
-            $tenant->getCode(),
-            'delete',
-            []
-        ));
+        $this->tenantService->deleteTenant($tenant);
 
         return $this->json(null, Response::HTTP_NO_CONTENT);
     }

@@ -7,12 +7,17 @@ use App\Entity\Property;
 use App\Entity\User;
 use App\Repository\PropertyRepository;
 use App\Repository\TenantRepository;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use App\Event\CreatePropertyEvent;
+use App\Event\UpdatePropertyEvent;
+use App\Event\DeletePropertyEvent;
 
 class PropertyService
 {
     public function __construct(
         private PropertyRepository $propertyRepository,
-        private TenantRepository $tenantRepository
+        private TenantRepository $tenantRepository,
+        private EventDispatcherInterface $eventDispatcher
     ) {}
 
     public function save(Property $property): void
@@ -55,6 +60,17 @@ class PropertyService
 
         $this->save($property);
 
+        $changes = [
+            'name' => $property->getName(),
+            'value' => $property->getValue(),
+            'type' => $property->getType(),
+            'isConfidential' => $property->isConfidential(),
+            'isActive' => $property->isActive(),
+            'createdAt' => $property->getCreatedAt(),
+        ];
+
+        $this->eventDispatcher->dispatch(new CreatePropertyEvent($property, $changes));
+
         return $property;
     }
 
@@ -69,6 +85,24 @@ class PropertyService
 
         $this->save($property);
 
+        $changes = [
+            'name' => $property->getName(),
+            'value' => $property->getValue(),
+            'type' => $property->getType(),
+            'isConfidential' => $property->isConfidential(),
+            'isActive' => $property->isActive(),
+        ];
+
+        $this->eventDispatcher->dispatch(new UpdatePropertyEvent($property, $changes));
+
         return $property;
+    }
+
+    public function deleteProperty(Property $property): void
+    {
+        $property->setDeletedAt(new \DateTimeImmutable());
+        $this->save($property);
+
+        $this->eventDispatcher->dispatch(new DeletePropertyEvent($property));
     }
 }
