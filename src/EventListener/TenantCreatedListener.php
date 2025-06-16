@@ -2,19 +2,26 @@
 
 namespace App\EventListener;
 
+use App\Entity\Tenant;
+use App\Entity\User;
 use App\Event\CreateTenantEvent;
+use App\Service\PropertyService;
+use App\Dto\PropertyCreateDto;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
-use Doctrine\DBAL\Driver\Connection;
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\DBAL\Connection;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[AsEventListener(event: CreateTenantEvent::class, method: 'onCreateTenant')]
 class TenantCreatedListener
 {
     private Connection $connection;
+    private PropertyService $propertyService;
 
-    public function __construct(Connection $connection)
+    public function __construct(ManagerRegistry $doctrine, PropertyService $propertyService)
     {
-        $this->connection = $connection;
+        $this->connection = $doctrine->getConnection();
+        $this->propertyService = $propertyService;
     }
 
     private function createDatabaseForTenant(string $databaseName): void
@@ -24,15 +31,56 @@ class TenantCreatedListener
         $stmt->executeQuery();
     }
 
-    private function createAdminUserInDatabase(string $databaseName, UserInterface $creator): void
+    private function createAdminUserInDatabase(string $databaseName, string $adminUsername, string $adminPassword): void
     {
-        $username = $creator->getUsername();
-        $password = $creator->getPassword();
-
-        $sql = "CREATE USER '{$username}'@'localhost' IDENTIFIED BY '{$password}';
-                GRANT ALL PRIVILEGES ON {$databaseName}.* TO '{$username}'@'localhost';";
+        $sql = "CREATE USER '{$adminUsername}'@'localhost' IDENTIFIED BY '{$adminPassword}';
+                GRANT ALL PRIVILEGES ON {$databaseName}.* TO '{$adminUsername}'@'localhost';";
         $stmt = $this->connection->prepare($sql);
         $stmt->executeQuery();
+    }
+
+    private function createAdminProperties(Tenant $tenant, UserInterface $creator): void
+    {
+        $adminUsername = $tenant->getCode();
+        $adminPassword = bin2hex(random_bytes(8));
+
+        $adminUsernamePropertyName = "adminUsername_" . $tenant->getCode();
+        $adminPasswordPropertyName = "adminPassword_" . $tenant->getCode();
+
+        $databaseName = 'my_tenant_manager_' . $tenant->getCode(); 
+
+        // Criar Property para o nome da base de dados
+        $this->propertyService->createPropertyFromDto(new PropertyCreateDto(
+            $databaseName, // Nome da propriedade
+            $databaseName, // Valor da propriedade
+            'string', // Tipo da propriedade
+            true, // Está ativo
+            false, // Não é confidencial
+            $tenant->getCode() // tenantCode
+        ), $creator);
+
+        // Criar Property para o nome de usuário admin
+        $this->propertyService->createPropertyFromDto(new PropertyCreateDto(
+            $adminUsernamePropertyName, // Nome da propriedade
+            $adminUsername, // Valor da propriedade
+            'string', // Tipo da propriedade
+            true, // Está ativo
+            false, // Não é confidencial
+            $tenant->getCode() // tenantCode
+        ), $creator);
+
+        // Criar Property para a senha do usuário admin
+        $this->propertyService->createPropertyFromDto(new PropertyCreateDto(
+            $adminPasswordPropertyName, // Nome da propriedade
+            $adminPassword, // Valor da propriedade
+            'string', // Tipo da propriedade
+            true, // Está ativo
+            true, // Confidencial
+            $tenant->getCode() // tenantCode
+        ), $creator);
+
+        // Chamar o método para criar o usuário admin na base de dados do Tenant
+        $this->createAdminUserInDatabase("my_tenant_manager_" . $tenant->getCode(), $adminUsername, $adminPassword);
     }
 
     public function onCreateTenant(CreateTenantEvent $event): void
@@ -42,6 +90,6 @@ class TenantCreatedListener
         $databaseName = 'my_tenant_manager_' . $tenant->getCode();
 
         $this->createDatabaseForTenant($databaseName);
-        $this->createAdminUserInDatabase($databaseName, $creator);
+        $this->createAdminProperties($tenant, $creator);
     }
 }
