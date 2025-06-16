@@ -7,12 +7,17 @@ use App\Entity\FeatureFlag;
 use App\Entity\User;
 use App\Repository\FeatureFlagRepository;
 use App\Repository\TenantRepository;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use App\Event\CreateFeatureFlagEvent;
+use App\Event\UpdateFeatureFlagEvent;
+use App\Event\DeleteFeatureFlagEvent;
 
 class FeatureFlagService
 {
     public function __construct(
         private FeatureFlagRepository $featureFlagRepository,
-        private TenantRepository $tenantRepository
+        private TenantRepository $tenantRepository,
+        private EventDispatcherInterface $eventDispatcher
     ) {}
 
     public function save(FeatureFlag $featureFlag): void
@@ -37,7 +42,6 @@ class FeatureFlagService
 
     public function createFeatureFlagFromDto(FeatureFlagCreateDto $dto, User $creator): FeatureFlag
     {
-        // Buscar o tenant pelo código fornecido no DTO
         $tenant = $this->tenantRepository->findOneBy(['code' => $dto->tenantCode]);
 
         if (!$tenant) {
@@ -53,19 +57,41 @@ class FeatureFlagService
 
         $this->save($featureFlag);
 
+        $changes = [
+            'name' => $featureFlag->getName(),
+            'isActive' => $featureFlag->isActive(),
+            'createdAt' => $featureFlag->getCreatedAt(),
+        ];
+
+        $this->eventDispatcher->dispatch(new CreateFeatureFlagEvent($featureFlag, $changes));
+
         return $featureFlag;
     }
 
     public function updateFeatureFlag(FeatureFlag $featureFlag, array $data): FeatureFlag
     {
-        // Atualiza os campos da feature flag
         $featureFlag->setName($data['name'] ?? $featureFlag->getName());
         $featureFlag->setIsActive($data['isActive'] ?? $featureFlag->isActive());
         $featureFlag->setUpdatedAt(new \DateTimeImmutable());
 
-        // Salva as mudanças
         $this->save($featureFlag);
 
+        $changes = [
+            'name' => $featureFlag->getName(),
+            'isActive' => $featureFlag->isActive(),
+            'createdAt' => $featureFlag->getCreatedAt(),
+        ];
+
+        $this->eventDispatcher->dispatch(new UpdateFeatureFlagEvent($featureFlag, $changes));
+
         return $featureFlag;
+    }
+
+    public function deleteFeatureFlag(FeatureFlag $featureFlag): void
+    {
+        $featureFlag->setDeletedAt(new \DateTimeImmutable());
+        $this->save($featureFlag);
+
+        $this->eventDispatcher->dispatch(new DeleteFeatureFlagEvent($featureFlag));
     }
 }

@@ -32,7 +32,7 @@ class User implements PasswordAuthenticatedUserInterface, UserInterface
     #[ORM\Column(length: 255)]
     private ?string $password = null;
 
-    #[ORM\Column(type: Types::ARRAY)]
+    #[ORM\Column(type: Types::JSON)]
     #[Groups(['user:read', 'audit:read'])]
     private array $roles = [];
 
@@ -187,7 +187,7 @@ class User implements PasswordAuthenticatedUserInterface, UserInterface
 
     public function eraseCredentials(): void
     {
-        $this->password = "";
+        //$this->password = "";
     }
 
     public function getUserIdentifier(): string

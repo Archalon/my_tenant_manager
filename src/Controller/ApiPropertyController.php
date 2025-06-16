@@ -55,16 +55,6 @@ class ApiPropertyController extends AbstractController
 
         $property = $this->propertyService->createPropertyFromDto($createDto, $user);
 
-        // Disparar evento de auditoria para criação de property
-        $this->eventDispatcher->dispatch(new AuditLogEvent(
-            $user,
-            "Created property: {$property->getName()}",
-            'Property',
-            $property->getName(),
-            'create',
-            []
-        ));
-
         return $this->json($property, Response::HTTP_CREATED, [], ['groups' => 'property:read']);
     }
 
@@ -79,16 +69,6 @@ class ApiPropertyController extends AbstractController
         $data = json_decode($request->getContent(), true);
         $property = $this->propertyService->updateProperty($property, $data);
 
-        // Disparar evento de auditoria para atualização de property
-        $this->eventDispatcher->dispatch(new AuditLogEvent(
-            $this->getUser(),
-            "Updated property: {$property->getName()}",
-            'Property',
-            $property->getName(),
-            'update',
-            ['changes' => $data]
-        ));
-
         return $this->json($property, Response::HTTP_OK, [], ['groups' => 'property:read']);
     }
 
@@ -100,17 +80,7 @@ class ApiPropertyController extends AbstractController
             return $this->json(['error' => 'Property not found'], Response::HTTP_NOT_FOUND);
         }
 
-        $this->propertyService->delete($property);
-
-        // Disparar evento de auditoria para deleção de property
-        $this->eventDispatcher->dispatch(new AuditLogEvent(
-            $this->getUser(),
-            "Deleted property: {$property->getName()}",
-            'Property',
-            $property->getName(),
-            'delete',
-            []
-        ));
+        $this->propertyService->deleteProperty($property);
 
         return $this->json(null, Response::HTTP_NO_CONTENT);
     }

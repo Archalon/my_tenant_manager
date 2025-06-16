@@ -27,11 +27,11 @@ class UserRepository extends ServiceEntityRepository
 
     public function findAllUsers(): array
     {
-        return $this->findAll();
+        return $this->findBy(['deletedAt' => null]);
     }
 
     public function findByEmail(string $email): ?User
     {
-        return $this->findOneBy(['email' => $email]);
+        return $this->findOneBy(['email' => $email, 'deletedAt' => null]);
     }
 }

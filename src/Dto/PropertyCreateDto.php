@@ -24,4 +24,14 @@ class PropertyCreateDto
 
     #[Assert\NotBlank]
     public string $tenantCode;
+
+    public function __construct(string $name, string $value, string $type, bool $isActive, bool $isConfidential, string $tenantCode)
+    {
+        $this->name = $name;
+        $this->value = $value;
+        $this->type = $type;
+        $this->isActive = $isActive;
+        $this->isConfidential = $isConfidential;
+        $this->tenantCode = $tenantCode;
+    }
 }

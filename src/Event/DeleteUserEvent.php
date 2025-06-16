@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Event;
+
+use Symfony\Contracts\EventDispatcher\Event;
+use App\Entity\User;
+
+class DeleteUserEvent extends Event
+{
+    public const NAME = 'user.delete';
+
+    private User $user;
+
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
+
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+}
