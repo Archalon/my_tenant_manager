@@ -43,40 +43,36 @@ class TenantCreatedListener
     {
         $adminUsername = $tenant->getCode();
         $adminPassword = bin2hex(random_bytes(8));
-
-        $adminUsernamePropertyName = "adminUsername_" . $tenant->getCode();
-        $adminPasswordPropertyName = "adminPassword_" . $tenant->getCode();
-
         $databaseName = 'my_tenant_manager_' . $tenant->getCode(); 
 
         // Criar Property para o nome da base de dados
         $this->propertyService->createPropertyFromDto(new PropertyCreateDto(
-            $databaseName, // Nome da propriedade
-            $databaseName, // Valor da propriedade
-            'string', // Tipo da propriedade
-            true, // Está ativo
-            false, // Não é confidencial
-            $tenant->getCode() // tenantCode
+            name: 'database_name',
+            value: $databaseName,
+            type: 'string', 
+            isActive: true, 
+            isConfidential: false,
+            tenantCode: $tenant->getCode()
         ), $creator);
 
         // Criar Property para o nome de usuário admin
         $this->propertyService->createPropertyFromDto(new PropertyCreateDto(
-            $adminUsernamePropertyName, // Nome da propriedade
-            $adminUsername, // Valor da propriedade
-            'string', // Tipo da propriedade
-            true, // Está ativo
-            false, // Não é confidencial
-            $tenant->getCode() // tenantCode
+            name: 'database_username',
+            value: $adminUsername,
+            type: 'string',
+            isActive: true,
+            isConfidential: false,
+            tenantCode: $tenant->getCode()
         ), $creator);
 
         // Criar Property para a senha do usuário admin
         $this->propertyService->createPropertyFromDto(new PropertyCreateDto(
-            $adminPasswordPropertyName, // Nome da propriedade
-            $adminPassword, // Valor da propriedade
-            'string', // Tipo da propriedade
-            true, // Está ativo
-            true, // Confidencial
-            $tenant->getCode() // tenantCode
+            name: 'database_password',
+            value: $adminPassword,
+            type: 'string',
+            isActive: true,
+            isConfidential: true,
+            tenantCode: $tenant->getCode()
         ), $creator);
 
         // Chamar o método para criar o usuário admin na base de dados do Tenant

@@ -1,0 +1,826 @@
+type: collection.insomnia.rest/5.0
+name: Scratch Pad
+meta:
+  id: wrk_scratchpad
+  created: 1734891048617
+  modified: 1734891048617
+  description: ""
+collection:
+  - name: projeto final
+    meta:
+      id: fld_c843c851edb24815a991e67e220b5ea6
+      created: 1742661355020
+      modified: 1742669556734
+      sortKey: -1742661355021
+      description: ""
+    children:
+      - name: Professors
+        meta:
+          id: fld_260753029c7c429799ad0771d154a147
+          created: 1747856470069
+          modified: 1747856470069
+          sortKey: -1747856470069
+          description: ""
+      - name: Matriculas
+        meta:
+          id: fld_f2c952d6e6674f2d8f5a4b24e9de4a36
+          created: 1747856494049
+          modified: 1747856494049
+          sortKey: -1747856494049
+          description: ""
+      - name: Horarios
+        meta:
+          id: fld_29b6c557dab343a683917c6a95d43f13
+          created: 1747856570390
+          modified: 1747856570390
+          sortKey: -1747856570390
+          description: ""
+      - name: Salas
+        meta:
+          id: fld_b5880428b06e4dc2a0e9d27ba6350baa
+          created: 1747856671856
+          modified: 1747856671856
+          sortKey: -1747856671856
+          description: ""
+      - name: Disciplinas
+        meta:
+          id: fld_7065f23deda849428f8df252c8c6033d
+          created: 1747856856967
+          modified: 1747856865420
+          sortKey: -1745261867178
+          description: ""
+      - name: Turmas
+        meta:
+          id: fld_551a29111ad24b109ed11511666d5325
+          created: 1747857000980
+          modified: 1747857037574
+          sortKey: -1742663914477
+          description: ""
+      - name: Curso
+        meta:
+          id: fld_9744ca69ded84b4cb6c6725a32922474
+          created: 1747857153954
+          modified: 1747857156488
+          sortKey: -1742663584054
+          description: ""
+      - name: Users
+        meta:
+          id: fld_1a84150f5e014af78d3e80396f47e959
+          created: 1747857201047
+          modified: 1747857217690
+          sortKey: -1742662913211.375
+          description: ""
+    scripts:
+      afterResponse: ""
+      preRequest: ""
+  - name: my_tasks_project
+    meta:
+      id: fld_1f6851317b664b8ebddf6c35d960a060
+      created: 1743864306894
+      modified: 1743864318314
+      sortKey: -1743864306894
+      description: ""
+  - name: my_tenant_manager
+    meta:
+      id: fld_47b8e1596e364b038331a45d55e9ce96
+      created: 1744815895000
+      modified: 1750075090010
+      sortKey: -1744815895000
+      description: ""
+    children:
+      - name: User
+        meta:
+          id: fld_4e7d4838e6cf48d7a291e5664bad7aed
+          created: 1744815902845
+          modified: 1744815902845
+          sortKey: -1744815902846
+          description: ""
+        children:
+          - url: http://localhost:8000/api/users
+            name: Create New User
+            meta:
+              id: req_bcc0fc4d557a40579101f0a5c1d491f0
+              created: 1744815904907
+              modified: 1750072003046
+              isPrivate: false
+              description: ""
+              sortKey: -1744815904907
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "email": "cliente15@example.com",
+                  "username": "cliente15",
+                	"password": "123456"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            authentication:
+              type: none
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8000/api/users
+            name: Get All Users
+            meta:
+              id: req_993c8a89357440c9ada2a07e11bd3af5
+              created: 1744824686240
+              modified: 1746728525022
+              isPrivate: false
+              description: ""
+              sortKey: -1744824686240
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            authentication:
+              type: bearer
+              token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDYxOTA4OTgsImV4cCI6MTc0NjE5NDQ5OCwicm9sZXMiOlsiUk9MRV9BUEkiXSwiZW1haWwiOiJjbGllbnRlMUBleGFtcGxlLmNvbSJ9.C8Y6JUwfL2w1nw_5pPpU_JiNsS3e6M2g0jTxvu8FU_fprGbV2oeKm_BaYnKQh1iKF2YyGu8M_g9VN1z5W65LyVhf26j0rptbUnOtTp8l6HQjtM2TcSj_TJCIcqZC3r2zNqDvmTMBd271vR3KZH6BKvUewZ8-EJRGNPT50tes7gTi6ggIk-yjOs1nuVFGmkEeH41WaHJOjo9oUBV1hiRflBWjCId1wVKa-2OnveOW9GGqsBwQuV04SVUBYsGRFWUxFsZf7C2kN-Gh73uSaBTYf5tT6JroXDIAGRzUfO9IEkbpyLFmhSadkUXEN0O8W0zPyZhGG2pjw6HJ9Zk0KZknMw
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8000/api/users/cliente1@example.com
+            name: Get User
+            meta:
+              id: req_0128a2d2c8bd45d38a0c83a66c4da200
+              created: 1744824810693
+              modified: 1744824834561
+              isPrivate: false
+              description: ""
+              sortKey: -1744824810693
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8000/api/users/cliente5@example.com
+            name: Update User
+            meta:
+              id: req_a727b1a9cbe84f8c9edb557ed3fdf0bd
+              created: 1744824839911
+              modified: 1746192061618
+              isPrivate: false
+              description: ""
+              sortKey: -1744824839911
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "username": "cliente5AtualizadoAuditLog"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            authentication:
+              type: bearer
+              token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDYxOTA4OTgsImV4cCI6MTc0NjE5NDQ5OCwicm9sZXMiOlsiUk9MRV9BUEkiXSwiZW1haWwiOiJjbGllbnRlMUBleGFtcGxlLmNvbSJ9.C8Y6JUwfL2w1nw_5pPpU_JiNsS3e6M2g0jTxvu8FU_fprGbV2oeKm_BaYnKQh1iKF2YyGu8M_g9VN1z5W65LyVhf26j0rptbUnOtTp8l6HQjtM2TcSj_TJCIcqZC3r2zNqDvmTMBd271vR3KZH6BKvUewZ8-EJRGNPT50tes7gTi6ggIk-yjOs1nuVFGmkEeH41WaHJOjo9oUBV1hiRflBWjCId1wVKa-2OnveOW9GGqsBwQuV04SVUBYsGRFWUxFsZf7C2kN-Gh73uSaBTYf5tT6JroXDIAGRzUfO9IEkbpyLFmhSadkUXEN0O8W0zPyZhGG2pjw6HJ9Zk0KZknMw
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8000/api/users/cliente4@example.com
+            name: Delete User
+            meta:
+              id: req_71ccbbcf5f2340cc9845240a0e9ddf7e
+              created: 1744824896386
+              modified: 1746190950236
+              isPrivate: false
+              description: ""
+              sortKey: -1744824896386
+            method: DELETE
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            authentication:
+              type: bearer
+              token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDYxOTA4OTgsImV4cCI6MTc0NjE5NDQ5OCwicm9sZXMiOlsiUk9MRV9BUEkiXSwiZW1haWwiOiJjbGllbnRlMUBleGFtcGxlLmNvbSJ9.C8Y6JUwfL2w1nw_5pPpU_JiNsS3e6M2g0jTxvu8FU_fprGbV2oeKm_BaYnKQh1iKF2YyGu8M_g9VN1z5W65LyVhf26j0rptbUnOtTp8l6HQjtM2TcSj_TJCIcqZC3r2zNqDvmTMBd271vR3KZH6BKvUewZ8-EJRGNPT50tes7gTi6ggIk-yjOs1nuVFGmkEeH41WaHJOjo9oUBV1hiRflBWjCId1wVKa-2OnveOW9GGqsBwQuV04SVUBYsGRFWUxFsZf7C2kN-Gh73uSaBTYf5tT6JroXDIAGRzUfO9IEkbpyLFmhSadkUXEN0O8W0zPyZhGG2pjw6HJ9Zk0KZknMw
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Security
+        meta:
+          id: fld_82b8a0be228e41a09ac044b39d637a42
+          created: 1744902396138
+          modified: 1744902396138
+          sortKey: -1744902396138
+          description: ""
+        children:
+          - url: http://localhost:8000/login
+            name: Login
+            meta:
+              id: req_08137a7e8e3644e883a504e5e51e472c
+              created: 1744902398888
+              modified: 1750072159854
+              isPrivate: false
+              description: ""
+              sortKey: -1744902398888
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"email": "cliente15@example.com",
+                	"password": "123456"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            authentication:
+              type: none
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Tenant
+        meta:
+          id: fld_960db5320b234b39b182abf8fff9eaec
+          created: 1745410460465
+          modified: 1745410460465
+          sortKey: -1745410460465
+          description: ""
+        children:
+          - url: http://localhost:8000/api/tenants
+            name: Create New Tenant
+            meta:
+              id: req_3857160af4ed44158be6e59c6939d304
+              created: 1745410479481
+              modified: 1750075006747
+              isPrivate: false
+              description: ""
+              sortKey: -1745410479481
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "name": "Tenant 22",
+                  "code": "TENANT_022",
+                  "status": "created",
+                  "isActive": true
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            authentication:
+              type: bearer
+              token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NTAwNzIxNjMsImV4cCI6MTc1MDA3NTc2Mywicm9sZXMiOlsiUk9MRV9BUEkiXSwiZW1haWwiOiJjbGllbnRlMTVAZXhhbXBsZS5jb20ifQ.iUc0L4scIgWhAzfYmyidctz0S_UAGR0_fENwcqVlCu4EVpnImWya6q6qmBhVGsL5duLh_j0uch5nd6FaK9RG9ux-QPbQ7VOC2y2HoFiCvwv_MwHv2Al6aIlbLZiTeHft9OPS3VNp1lZgInxxup8haZX-0u6h_sVoAODw7b_ZE36YaAhUdoBkbonydgcWqMmkHNheE4dY7nhY86K8QcD626Y1Mrj1rL7NNctSpBHMDFFM1KHS8xY9QaeHqEVC4BRt3sN0SAGuJCOQi4pHBctVnf2sG8uPnkQrtHaUFXptFFLbjno-WC1ZfaZywN8MTV3znWk-khNw6k6r4E9lVL6h4w
+              disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8000/api/tenants
+            name: Get All Tenants
+            meta:
+              id: req_1308a6c65cb74a9e948dc9eee667819a
+              created: 1745410654855
+              modified: 1745410662357
+              isPrivate: false
+              description: ""
+              sortKey: -1745156439184.5
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            authentication:
+              type: bearer
+              token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDU0MTAzODgsImV4cCI6MTc0NTQxMzk4OCwicm9sZXMiOlsiUk9MRV9BUEkiXSwiZW1haWwiOiJjbGllbnRlMUBnbWFpbC5jb20ifQ.CwZ6H3FQDDu6bRs5m5QQVX1f9EBJ7GdliK4ewJfJTbyZfQ8RIgFdcJv5Eu5s8MqAobPMk2DNLildUtnQOnV1ZDfJuMofSBLcdRFjOogZnIBqfmTDVu8VdZ2xGlh_JksMhdh-t1toFxycwhkq-iScE8cT6mDk-kSv0Nn5vIUEf1HZqDTuy8x2s0IudCAykzwDQLRYfa-W3Wc7poTdnAn1VHs65rdEEg1YlXBSTdRwCsZ0y2sEtxRs619l6CvGDXyW9sZVMCUNNz_LrMrjPf0y5geB9ElylQWdVp74RQ-Z-W0Te3JMyxhDH-2zCjPkbk-UiJQeRvSqVbPSgJdRV78BqQ
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8000/api/tenants/TENANT_001
+            name: Get Tenant
+            meta:
+              id: req_c989033fe7614fedb59cefd93363c894
+              created: 1745410677624
+              modified: 1745410687783
+              isPrivate: false
+              description: ""
+              sortKey: -1745029419036.25
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            authentication:
+              type: bearer
+              token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDU0MTAzODgsImV4cCI6MTc0NTQxMzk4OCwicm9sZXMiOlsiUk9MRV9BUEkiXSwiZW1haWwiOiJjbGllbnRlMUBnbWFpbC5jb20ifQ.CwZ6H3FQDDu6bRs5m5QQVX1f9EBJ7GdliK4ewJfJTbyZfQ8RIgFdcJv5Eu5s8MqAobPMk2DNLildUtnQOnV1ZDfJuMofSBLcdRFjOogZnIBqfmTDVu8VdZ2xGlh_JksMhdh-t1toFxycwhkq-iScE8cT6mDk-kSv0Nn5vIUEf1HZqDTuy8x2s0IudCAykzwDQLRYfa-W3Wc7poTdnAn1VHs65rdEEg1YlXBSTdRwCsZ0y2sEtxRs619l6CvGDXyW9sZVMCUNNz_LrMrjPf0y5geB9ElylQWdVp74RQ-Z-W0Te3JMyxhDH-2zCjPkbk-UiJQeRvSqVbPSgJdRV78BqQ
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8000/api/tenants/TENANT_005
+            name: Update Tenant
+            meta:
+              id: req_1262e702c4f14f909036a875a17eaf58
+              created: 1745410720416
+              modified: 1746733036330
+              isPrivate: false
+              description: ""
+              sortKey: -1745283459332.75
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "name": "Tenant 005 Atualizado",
+                  "status": "ready"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            authentication:
+              type: bearer
+              token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDY3MzI4MjAsImV4cCI6MTc0NjczNjQyMCwicm9sZXMiOlsiUk9MRV9BUEkiXSwiZW1haWwiOiJjbGllbnRlN0BleGFtcGxlLmNvbSJ9.jL5EmSh0UcKK1AzYpex2LYpZJbZjTcYduoBPWDvucv0DEMmLIO1xLYiXmSWUfI-1ZItDCAhS4O3HGzZWT93Uu3SZ4yAWUqeevKlF1I_b2Jn3oxUH2ysDxqkGLDcTsak5f30Atjgmvwxr9RFDMx70KMRicisaBQqa3l_gTylKTKRObKpwOALbJEgOeboyDNFJVSR_SIYC8Xi55TTJnGHYbWtSuAhnnHmcvEn2KP8xRuvJjbQfYrhmO5V03UChzChyiEnnCNYDsYAOESmYUzxqoq1PAQunqGNm4i4N9Ebi8r3xesFkCV4LQQiUl8MhJW4CflNOvsiVwZ4ahnxWAmB6og
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8000/api/tenants/TENANT_005
+            name: Delete Tenant
+            meta:
+              id: req_0e6888f53c1745ebb3e297cbc72c7c04
+              created: 1745410798686
+              modified: 1746733067958
+              isPrivate: false
+              description: ""
+              sortKey: -1745410798686
+            method: DELETE
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            authentication:
+              type: bearer
+              token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDY3MzI4MjAsImV4cCI6MTc0NjczNjQyMCwicm9sZXMiOlsiUk9MRV9BUEkiXSwiZW1haWwiOiJjbGllbnRlN0BleGFtcGxlLmNvbSJ9.jL5EmSh0UcKK1AzYpex2LYpZJbZjTcYduoBPWDvucv0DEMmLIO1xLYiXmSWUfI-1ZItDCAhS4O3HGzZWT93Uu3SZ4yAWUqeevKlF1I_b2Jn3oxUH2ysDxqkGLDcTsak5f30Atjgmvwxr9RFDMx70KMRicisaBQqa3l_gTylKTKRObKpwOALbJEgOeboyDNFJVSR_SIYC8Xi55TTJnGHYbWtSuAhnnHmcvEn2KP8xRuvJjbQfYrhmO5V03UChzChyiEnnCNYDsYAOESmYUzxqoq1PAQunqGNm4i4N9Ebi8r3xesFkCV4LQQiUl8MhJW4CflNOvsiVwZ4ahnxWAmB6og
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Property
+        meta:
+          id: fld_88fba60a6dbb40488f991194cde9d625
+          created: 1745412354790
+          modified: 1745412354790
+          sortKey: -1745412354790
+          description: ""
+        children:
+          - url: http://localhost:8000/api/properties
+            name: Create New Property
+            meta:
+              id: req_7dde43d4f2cf47d8add3b61acc01a4b1
+              created: 1745412360196
+              modified: 1750073972079
+              isPrivate: false
+              description: ""
+              sortKey: -1745412360196
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "name": "feature-light-mode",
+                  "value": "false",
+                  "type": "bool",
+                  "isConfidential": false,
+                  "isActive": true,
+                  "tenantCode": "TENANT_001"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            authentication:
+              type: bearer
+              token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDY3Mzc0MDYsImV4cCI6MTc0Njc0MTAwNiwicm9sZXMiOlsiUk9MRV9BUEkiXSwiZW1haWwiOiJjbGllbnRlOEBleGFtcGxlLmNvbSJ9.pIJAKK7hD89zqSxKzD6tDGP4EDmPc9YfaQwq6RmeDYjsBltBzYZxWWFEylMDMqtvn4lY0YVej1TNoGmoiIIpWSCcC0rElWCNSIswQRjL_iyNvGr1jnPGvWOiA4Fi1pbJaKZTXJxF8ERWvH6kHoVw2ljYrrVOVIAA_atoePPp-rBvRQJuBmaXYgm1-pIdFMrEBPLNyrDIp_8qsB8qgdhri6Kn21R9OxavFUldYZh8ubBkFwayvUIN8-WM9hS_aMDsRpmAhi7TlCNpU8KFpWdiRVeHqsu6P68lY0UEJxcSymts7RGgmEvRGORB-LCAd2XoRbkZUDfO8YnHtcGNA9ZiLA
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8000/api/properties
+            name: Get All Properties
+            meta:
+              id: req_84aaa5d5a1f440179abd8ab5e02f04d0
+              created: 1745415598057
+              modified: 1745415606468
+              isPrivate: false
+              description: ""
+              sortKey: -1745411579441
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            authentication:
+              type: bearer
+              token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDU0MTU0MjAsImV4cCI6MTc0NTQxOTAyMCwicm9sZXMiOlsiUk9MRV9BUEkiXSwiZW1haWwiOiJjbGllbnRlMUBnbWFpbC5jb20ifQ.MHRWuwXxiPwKZf0l4XGw5ZLXbDmIpTrk1nwgp_NlTSmhZmPrWJd9G0yMYzVGUS_3oH_oEOmk6HFPuI58rv3_6kN3kiWOwh1gPli2kFCRbG1-0_-nShgHUYk2Dd9IxngsM16sDbV-CTnadqRb4GiWakPZUypKYd20DOtevvzaaIo7Rw1fT6WKfZYl4rzYyxfRrGOFQkNuufJOlPafuWPZ2RhlmKQtOipwuUBlpEuGy8aqwIHwtMJ6x74fTo4oNVMvSUNMV-r-_0Ltn4hm7F9l-yy-zj6zhhX-3vwqyCsj1dtwNDc-BFCJMoO1OFBu2e4-trq2lv5lJfiAWUGn_FYNHg
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8000/api/properties/feature-dark-mode
+            name: Get Property
+            meta:
+              id: req_20191367d92d4fd085da4ca7a718b604
+              created: 1745415621154
+              modified: 1745415628499
+              isPrivate: false
+              description: ""
+              sortKey: -1745411189063.5
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            authentication:
+              type: bearer
+              token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDU0MTU0MjAsImV4cCI6MTc0NTQxOTAyMCwicm9sZXMiOlsiUk9MRV9BUEkiXSwiZW1haWwiOiJjbGllbnRlMUBnbWFpbC5jb20ifQ.MHRWuwXxiPwKZf0l4XGw5ZLXbDmIpTrk1nwgp_NlTSmhZmPrWJd9G0yMYzVGUS_3oH_oEOmk6HFPuI58rv3_6kN3kiWOwh1gPli2kFCRbG1-0_-nShgHUYk2Dd9IxngsM16sDbV-CTnadqRb4GiWakPZUypKYd20DOtevvzaaIo7Rw1fT6WKfZYl4rzYyxfRrGOFQkNuufJOlPafuWPZ2RhlmKQtOipwuUBlpEuGy8aqwIHwtMJ6x74fTo4oNVMvSUNMV-r-_0Ltn4hm7F9l-yy-zj6zhhX-3vwqyCsj1dtwNDc-BFCJMoO1OFBu2e4-trq2lv5lJfiAWUGn_FYNHg
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8000/api/properties/feature-light-mode
+            name: Update Property
+            meta:
+              id: req_a8ac01d35d534ea6adfb1085d8b456a4
+              created: 1745415649650
+              modified: 1746738699336
+              isPrivate: false
+              description: ""
+              sortKey: -1745410993874.75
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "value": "false",
+                  "type": "bool"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            authentication:
+              type: bearer
+              token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDY3Mzc0MDYsImV4cCI6MTc0Njc0MTAwNiwicm9sZXMiOlsiUk9MRV9BUEkiXSwiZW1haWwiOiJjbGllbnRlOEBleGFtcGxlLmNvbSJ9.pIJAKK7hD89zqSxKzD6tDGP4EDmPc9YfaQwq6RmeDYjsBltBzYZxWWFEylMDMqtvn4lY0YVej1TNoGmoiIIpWSCcC0rElWCNSIswQRjL_iyNvGr1jnPGvWOiA4Fi1pbJaKZTXJxF8ERWvH6kHoVw2ljYrrVOVIAA_atoePPp-rBvRQJuBmaXYgm1-pIdFMrEBPLNyrDIp_8qsB8qgdhri6Kn21R9OxavFUldYZh8ubBkFwayvUIN8-WM9hS_aMDsRpmAhi7TlCNpU8KFpWdiRVeHqsu6P68lY0UEJxcSymts7RGgmEvRGORB-LCAd2XoRbkZUDfO8YnHtcGNA9ZiLA
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8000/api/properties/feature-light-mode
+            name: Delete Propety
+            meta:
+              id: req_9e2a393726bc4c40bcd11d7ad97f7af3
+              created: 1745415689075
+              modified: 1746738782845
+              isPrivate: false
+              description: ""
+              sortKey: -1745410896280.375
+            method: DELETE
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            authentication:
+              type: bearer
+              token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDY3Mzc0MDYsImV4cCI6MTc0Njc0MTAwNiwicm9sZXMiOlsiUk9MRV9BUEkiXSwiZW1haWwiOiJjbGllbnRlOEBleGFtcGxlLmNvbSJ9.pIJAKK7hD89zqSxKzD6tDGP4EDmPc9YfaQwq6RmeDYjsBltBzYZxWWFEylMDMqtvn4lY0YVej1TNoGmoiIIpWSCcC0rElWCNSIswQRjL_iyNvGr1jnPGvWOiA4Fi1pbJaKZTXJxF8ERWvH6kHoVw2ljYrrVOVIAA_atoePPp-rBvRQJuBmaXYgm1-pIdFMrEBPLNyrDIp_8qsB8qgdhri6Kn21R9OxavFUldYZh8ubBkFwayvUIN8-WM9hS_aMDsRpmAhi7TlCNpU8KFpWdiRVeHqsu6P68lY0UEJxcSymts7RGgmEvRGORB-LCAd2XoRbkZUDfO8YnHtcGNA9ZiLA
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: FeatureFlag
+        meta:
+          id: fld_248ca4f93df34b05b4622f04d4482354
+          created: 1745417211549
+          modified: 1745417211549
+          sortKey: -1745417211549
+          description: ""
+        children:
+          - url: http://localhost:8000/api/feature_flags
+            name: Create New FeatureFlag
+            meta:
+              id: req_399b416b6b5b431e8519a92077043b39
+              created: 1745417224930
+              modified: 1750074023333
+              isPrivate: false
+              description: ""
+              sortKey: -1745417228021
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "name": "Test Feature",
+                  "isActive": true,
+                  "tenantCode": "TENANT_020"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            authentication:
+              type: bearer
+              token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NTAwNzIxNjMsImV4cCI6MTc1MDA3NTc2Mywicm9sZXMiOlsiUk9MRV9BUEkiXSwiZW1haWwiOiJjbGllbnRlMTVAZXhhbXBsZS5jb20ifQ.iUc0L4scIgWhAzfYmyidctz0S_UAGR0_fENwcqVlCu4EVpnImWya6q6qmBhVGsL5duLh_j0uch5nd6FaK9RG9ux-QPbQ7VOC2y2HoFiCvwv_MwHv2Al6aIlbLZiTeHft9OPS3VNp1lZgInxxup8haZX-0u6h_sVoAODw7b_ZE36YaAhUdoBkbonydgcWqMmkHNheE4dY7nhY86K8QcD626Y1Mrj1rL7NNctSpBHMDFFM1KHS8xY9QaeHqEVC4BRt3sN0SAGuJCOQi4pHBctVnf2sG8uPnkQrtHaUFXptFFLbjno-WC1ZfaZywN8MTV3znWk-khNw6k6r4E9lVL6h4w
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8000/api/feature_flags
+            name: Get All FeatureFlags
+            meta:
+              id: req_0bb338e643a8478d9ee766f8d08a9a30
+              created: 1745418059243
+              modified: 1745418064721
+              isPrivate: false
+              description: ""
+              sortKey: -1745414794108.5
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            authentication:
+              type: bearer
+              token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDU0MTU0MjAsImV4cCI6MTc0NTQxOTAyMCwicm9sZXMiOlsiUk9MRV9BUEkiXSwiZW1haWwiOiJjbGllbnRlMUBnbWFpbC5jb20ifQ.MHRWuwXxiPwKZf0l4XGw5ZLXbDmIpTrk1nwgp_NlTSmhZmPrWJd9G0yMYzVGUS_3oH_oEOmk6HFPuI58rv3_6kN3kiWOwh1gPli2kFCRbG1-0_-nShgHUYk2Dd9IxngsM16sDbV-CTnadqRb4GiWakPZUypKYd20DOtevvzaaIo7Rw1fT6WKfZYl4rzYyxfRrGOFQkNuufJOlPafuWPZ2RhlmKQtOipwuUBlpEuGy8aqwIHwtMJ6x74fTo4oNVMvSUNMV-r-_0Ltn4hm7F9l-yy-zj6zhhX-3vwqyCsj1dtwNDc-BFCJMoO1OFBu2e4-trq2lv5lJfiAWUGn_FYNHg
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8000/api/feature_flags/New Feature
+            name: Get FeatureFlag
+            meta:
+              id: req_423518b2545241eea0e9aee1296afaad
+              created: 1745418078306
+              modified: 1745418092694
+              isPrivate: false
+              description: ""
+              sortKey: -1745413577152.25
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            authentication:
+              type: bearer
+              token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDU0MTU0MjAsImV4cCI6MTc0NTQxOTAyMCwicm9sZXMiOlsiUk9MRV9BUEkiXSwiZW1haWwiOiJjbGllbnRlMUBnbWFpbC5jb20ifQ.MHRWuwXxiPwKZf0l4XGw5ZLXbDmIpTrk1nwgp_NlTSmhZmPrWJd9G0yMYzVGUS_3oH_oEOmk6HFPuI58rv3_6kN3kiWOwh1gPli2kFCRbG1-0_-nShgHUYk2Dd9IxngsM16sDbV-CTnadqRb4GiWakPZUypKYd20DOtevvzaaIo7Rw1fT6WKfZYl4rzYyxfRrGOFQkNuufJOlPafuWPZ2RhlmKQtOipwuUBlpEuGy8aqwIHwtMJ6x74fTo4oNVMvSUNMV-r-_0Ltn4hm7F9l-yy-zj6zhhX-3vwqyCsj1dtwNDc-BFCJMoO1OFBu2e4-trq2lv5lJfiAWUGn_FYNHg
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8000/api/feature_flags/New Feature
+            name: Update FeatureFlag
+            meta:
+              id: req_e50c2159825448d1bb3e399d98282364
+              created: 1745418108461
+              modified: 1746741193959
+              isPrivate: false
+              description: ""
+              sortKey: -1745412968674.125
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |
+                {
+                  "name": "Updated Feature",
+                  "isActive": false,
+                  "type": "bool"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            authentication:
+              type: bearer
+              token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDY3NDExNDAsImV4cCI6MTc0Njc0NDc0MCwicm9sZXMiOlsiUk9MRV9BUEkiXSwiZW1haWwiOiJjbGllbnRlOUBleGFtcGxlLmNvbSJ9.aKMKSWUtLx2-WJJgts9sl3a7kS_fV5rb6-EyvDCk1SY2oSqhChXt3u8rfGHAjT73b5N02REzpKMKAl09NC5iCGm8lOE-zJ_f2rJa0DPvcdFLgDJWjs2XGcKi-BlPPgaXNy_zz7enTlOH9l1RcRqKFvANMt6SeXl5IFbuZfNs_Ld-c0C44BC-gwJx6c8HE6NBTKsEQGg5VbrJ1t7vbcnkmN9eFST5HwAVKNnMeQSkWsUhaPFF-1Nyc3AReeNlQrJE2s5NzYCfvWs4WJ5zOSbQ9NTOorgczP8jA-30-SSXO6ecBRbsqDYnX0VPeekGuA3P99L_AkA_dLxwpF4SgwEdjw
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8000/api/feature_flags/Updated Feature
+            name: Delete FeatureFlag
+            meta:
+              id: req_abfe5626da5c4c4d9137d55e3dd802b7
+              created: 1745418565967
+              modified: 1746741249588
+              isPrivate: false
+              description: ""
+              sortKey: -1745412664435.0625
+            method: DELETE
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            authentication:
+              type: bearer
+              token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDY3NDExNDAsImV4cCI6MTc0Njc0NDc0MCwicm9sZXMiOlsiUk9MRV9BUEkiXSwiZW1haWwiOiJjbGllbnRlOUBleGFtcGxlLmNvbSJ9.aKMKSWUtLx2-WJJgts9sl3a7kS_fV5rb6-EyvDCk1SY2oSqhChXt3u8rfGHAjT73b5N02REzpKMKAl09NC5iCGm8lOE-zJ_f2rJa0DPvcdFLgDJWjs2XGcKi-BlPPgaXNy_zz7enTlOH9l1RcRqKFvANMt6SeXl5IFbuZfNs_Ld-c0C44BC-gwJx6c8HE6NBTKsEQGg5VbrJ1t7vbcnkmN9eFST5HwAVKNnMeQSkWsUhaPFF-1Nyc3AReeNlQrJE2s5NzYCfvWs4WJ5zOSbQ9NTOorgczP8jA-30-SSXO6ecBRbsqDYnX0VPeekGuA3P99L_AkA_dLxwpF4SgwEdjw
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Audit
+        meta:
+          id: fld_7f3705dcd15f4617b9ddfdfe5ef29dd7
+          created: 1745786421664
+          modified: 1745786421664
+          sortKey: -1745786421664
+          description: ""
+        children:
+          - url: http://localhost:8000/api/audits
+            name: View All Audit Logs
+            meta:
+              id: req_53c64a973768485e998949d9f1b64463
+              created: 1745786425134
+              modified: 1746190971130
+              isPrivate: false
+              description: ""
+              sortKey: -1745786425134
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            authentication:
+              type: bearer
+              token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDYxOTA4OTgsImV4cCI6MTc0NjE5NDQ5OCwicm9sZXMiOlsiUk9MRV9BUEkiXSwiZW1haWwiOiJjbGllbnRlMUBleGFtcGxlLmNvbSJ9.C8Y6JUwfL2w1nw_5pPpU_JiNsS3e6M2g0jTxvu8FU_fprGbV2oeKm_BaYnKQh1iKF2YyGu8M_g9VN1z5W65LyVhf26j0rptbUnOtTp8l6HQjtM2TcSj_TJCIcqZC3r2zNqDvmTMBd271vR3KZH6BKvUewZ8-EJRGNPT50tes7gTi6ggIk-yjOs1nuVFGmkEeH41WaHJOjo9oUBV1hiRflBWjCId1wVKa-2OnveOW9GGqsBwQuV04SVUBYsGRFWUxFsZf7C2kN-Gh73uSaBTYf5tT6JroXDIAGRzUfO9IEkbpyLFmhSadkUXEN0O8W0zPyZhGG2pjw6HJ9Zk0KZknMw
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8000/api/audits
+            name: View Audit Logs by ID
+            meta:
+              id: req_6e8835cb69104e1faf232dd4c6b6f9a7
+              created: 1745786477033
+              modified: 1745786496685
+              isPrivate: false
+              description: ""
+              sortKey: -1745601826577.5
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1734891064231
+    modified: 1744902965817
+  cookies:
+    - key: main_deauth_profile_token
+      value: 8530f3
+      domain: localhost
+      path: /
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-04-16T11:02:50.216Z
+      lastAccessed: 2025-04-16T11:02:50.216Z
+      sameSite: lax
+      id: 47611c99-fca4-4ee0-a82b-5e482cab5a1a
+    - key: main_auth_profile_token
+      value: deleted
+      maxAge: 0
+      domain: localhost
+      path: /
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-04-16T11:02:50.237Z
+      lastAccessed: 2025-04-16T11:02:50.237Z
+      id: e63f04cb-77ab-4535-a07e-965c01285d10
+    - key: sf_redirect
+      value: deleted
+      maxAge: 0
+      domain: localhost
+      path: /
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-04-16T13:46:48.900Z
+      lastAccessed: 2025-04-16T13:46:48.909Z
+      id: f9eb040f-1d08-42b5-91ee-5a963417b213
+    - key: PHPSESSID
+      value: a2dtjt295kq7akb1id8h5oqois
+      domain: localhost
+      path: /
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-04-17T15:10:10.075Z
+      lastAccessed: 2025-04-17T15:16:05.816Z
+      sameSite: lax
+      id: 97f0a976-2a44-4092-8753-5d90eacc7d82
+environments:
+  name: Base Environment
+  meta:
+    id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1734891064219
+    modified: 1734891064219
+    isPrivate: false
